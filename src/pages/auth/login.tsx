@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -82,6 +83,16 @@ const Login = () => {
             </Form>
           )}
         </Formik>
+        <div className='mt-6'>
+          <p className='text-center text-sm text-gray-600'>
+            Don't have an account?{' '}
+            <Link href='/auth/register'>
+              <button className='font-medium text-indigo-600 hover:text-indigo-500'>
+                Register
+              </button>
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
