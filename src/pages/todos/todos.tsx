@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 const Todos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState<string>('all');
 
   const auth = useAuth();
   const router = useRouter();

@@ -12,7 +12,7 @@ const withAuth = <P extends {}>(WrappedComponent: ComponentType<P>): FC<P> => {
   const WithAuthComponent: FC<P> = (props: P): ReactElement | null => {
     const router = useRouter();
     const auth = useAuth();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
       if (auth?.loading) {

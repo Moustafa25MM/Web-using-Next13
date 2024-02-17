@@ -13,7 +13,7 @@ const ToggleTodo: React.FC<ToggleTodoProps> = ({ todo, todos, setTodos }) => {
   const toggleTodo = async () => {
     try {
       const updatedTodo = await todoService.toggle(todo.id);
-      const updatedTodos = todos.map((t) =>
+      const updatedTodos = todos.map((t: Todo) =>
         t.id === todo.id ? updatedTodo : t
       );
       setTodos(updatedTodos);

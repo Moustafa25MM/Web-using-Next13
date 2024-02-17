@@ -9,7 +9,7 @@ interface AddTodoProps {
 }
 
 const AddTodo: React.FC<AddTodoProps> = ({ todos, setTodos }) => {
-  const [newTodo, setNewTodo] = useState('');
+  const [newTodo, setNewTodo] = useState<string>('');
 
   const addTodo = async () => {
     if (newTodo.trim() !== '') {

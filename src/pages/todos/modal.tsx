@@ -9,7 +9,7 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose, todo, onSave }: ModalProps) => {
-  const [title, setTitle] = useState(todo ? todo.name : '');
+  const [title, setTitle] = useState<string>(todo ? todo.name : '');
 
   const handleSave = () => {
     if (todo) {

@@ -34,7 +34,7 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos, todos }) => {
 
   return (
     <div>
-      {todos.map((todo) => (
+      {todos.map((todo: Todo) => (
         <div
           key={todo.id}
           className='flex justify-between items-center p-4 mb-2 bg-white rounded-lg shadow-md'

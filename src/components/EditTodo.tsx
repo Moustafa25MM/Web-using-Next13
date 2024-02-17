@@ -12,7 +12,7 @@ interface EditTodoProps {
 }
 
 const EditTodo: React.FC<EditTodoProps> = ({ todo, todos, setTodos }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
