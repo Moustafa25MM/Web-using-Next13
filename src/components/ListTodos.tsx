@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Todo } from '@/models/todo';
 import todoService from '@/services/todoService';
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
-import Modal from '@/pages/todos/modal';
 import DeleteTodo from './DeleteTodo';
 import ToggleTodo from './ToggleTodo';
+import EditTodo from './EditTodo';
 
 interface ListTodosProps {
   filter: string;
@@ -33,30 +32,8 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos, todos }) => {
     fetchTodos();
   }, [filter, setTodos]);
 
-  //   const openModal = (todo: Todo) => {
-  //     setCurrentTodo(todo);
-  //     setIsModalOpen(true);
-  //   };
-
-  //   const closeModal = () => {
-  //     setCurrentTodo(null);
-  //     setIsModalOpen(false);
-  //   };
-
-  //   const saveTodo = async (id: string, name: string) => {
-  //     const updatedTodo = await todoService.update(id, name);
-  //     setLocalTodos(todos.map((todo) => (todo.id === id ? updatedTodo : todo)));
-  //     closeModal();
-  //   };
-
   return (
     <div>
-      {/* <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        todo={currentTodo}
-        onSave={saveTodo}
-      /> */}
       {todos.map((todo) => (
         <div
           key={todo.id}
@@ -69,12 +46,7 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos, todos }) => {
             </span>
           </div>
           <div>
-            {/* <button
-              onClick={() => openModal(todo)}
-              className='text-sm bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded mr-2'
-            >
-              <AiFillEdit />
-            </button> */}
+            <EditTodo todo={todo} todos={todos} setTodos={setTodos} />
             <DeleteTodo id={todo.id} todos={todos} setTodos={setTodos} />
           </div>
         </div>

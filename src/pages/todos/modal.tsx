@@ -1,19 +1,15 @@
+import { Todo } from '@/models/todo';
 import React, { useState } from 'react';
-
-export interface Todo {
-  id: number;
-  title: string;
-}
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   todo: Todo | null;
-  onSave: (id: number, title: string) => void;
+  onSave: (id: string, title: string) => void;
 }
 
 const Modal = ({ isOpen, onClose, todo, onSave }: ModalProps) => {
-  const [title, setTitle] = useState(todo ? todo.title : '');
+  const [title, setTitle] = useState(todo ? todo.name : '');
 
   if (!isOpen) return null;
 
