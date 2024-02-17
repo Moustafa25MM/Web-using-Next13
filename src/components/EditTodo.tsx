@@ -24,7 +24,14 @@ const EditTodo: React.FC<EditTodoProps> = ({ todo, todos, setTodos }) => {
       setTodos(updatedTodos);
       toast.success('Todo updated successfully!');
       closeModal();
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response.status === 400) {
+        return toast.warn(`Todo name can't be empty`);
+      } else if (error.response.status === 409) {
+        return toast.error(
+          `Failed to update the todo, You already have one with the same name`
+        );
+      }
       toast.error('Failed to update the todo.');
     }
   };

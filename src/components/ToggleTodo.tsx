@@ -9,6 +9,7 @@ interface ToggleTodoProps {
 }
 
 const ToggleTodo: React.FC<ToggleTodoProps> = ({ todo, todos, setTodos }) => {
+  const todoStatus = todo.isCompleted ? 'back to be InCompleted' : 'Completed';
   const toggleTodo = async () => {
     try {
       const updatedTodo = await todoService.toggle(todo.id);
@@ -16,9 +17,9 @@ const ToggleTodo: React.FC<ToggleTodoProps> = ({ todo, todos, setTodos }) => {
         t.id === todo.id ? updatedTodo : t
       );
       setTodos(updatedTodos);
-      toast.success('Todo updated successfully!');
+      toast.success(`Todo is ${todoStatus}`);
     } catch (error) {
-      toast.error('Failed to update the todo.');
+      toast.error('Failed to toggle the todo.');
     }
   };
 
