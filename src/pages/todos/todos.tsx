@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Todo } from '@/models/todo';
 import AddTodo from '@/components/AddTodo';
 import ListTodos from '@/components/ListTodos';
+import withAuth from '@/utils/withAuth';
 
 const Todos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -51,4 +52,4 @@ const Todos = () => {
   );
 };
 
-export default Todos;
+export default withAuth(Todos);
