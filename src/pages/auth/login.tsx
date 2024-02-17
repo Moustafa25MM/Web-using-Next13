@@ -28,7 +28,7 @@ const Login = () => {
             try {
               await auth?.login(values.email, values.password);
               toast.success('Login successful!');
-              router.push('/todos');
+              router.push('/todos/todos');
             } catch (error: any) {
               if (error.response?.status === 401) {
                 toast.error('Login failed: Invalid email or password');
