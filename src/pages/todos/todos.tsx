@@ -42,9 +42,9 @@ const Todos = () => {
           Completed
         </button>
         <button
-          onClick={() => setFilter('uncompleted')}
+          onClick={() => setFilter('incompleted')}
           className={`flex-1 py-2 px-4 text-sm ${
-            filter === 'uncompleted'
+            filter === 'incompleted'
               ? 'text-white bg-blue-500'
               : 'text-gray-700 bg-white'
           } rounded-lg shadow-md`}
