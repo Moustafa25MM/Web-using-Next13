@@ -1,5 +1,5 @@
 import React from 'react';
-import Register from './register';
+import Register from './auth/register';
 
 const HomePage = () => {
   return (

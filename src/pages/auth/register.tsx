@@ -34,7 +34,7 @@ const Register = () => {
             try {
               await auth?.register(values.name, values.email, values.password);
               toast.success('Registration successful!');
-              router.push('/login');
+              router.push('/auth/login');
             } catch (error: any) {
               if (error.response.status === 409) {
                 toast.error('Registration failed: Email already Exists ');
@@ -97,6 +97,17 @@ const Register = () => {
                 >
                   {isSubmitting ? 'Please wait...' : 'Sign Up'}
                 </button>
+              </div>
+              <div className='mt-2 text-center'>
+                <p className='text-gray-600'>
+                  Already have an account?{' '}
+                  <a
+                    href='/auth/login'
+                    className='font-medium text-indigo-600 hover:text-indigo-500'
+                  >
+                    Log in
+                  </a>
+                </p>
               </div>
             </Form>
           )}
