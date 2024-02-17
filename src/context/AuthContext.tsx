@@ -16,6 +16,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
+  loading: boolean;
 }
 
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -24,12 +25,14 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: AuthContextProps) => {
   const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
     }
+    setLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -56,8 +59,8 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, register, logout }}>
-      {children}
+    <AuthContext.Provider value={{ token, login, register, logout, loading }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };

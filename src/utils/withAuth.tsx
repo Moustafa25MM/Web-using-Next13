@@ -15,6 +15,9 @@ const withAuth = <P extends {}>(WrappedComponent: ComponentType<P>): FC<P> => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+      if (auth?.loading) {
+        return;
+      }
       if (!auth?.token) {
         router.push('/auth/login');
       } else {

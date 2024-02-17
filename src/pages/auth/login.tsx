@@ -31,11 +31,10 @@ const Login = () => {
               router.push('/todos/todos');
             } catch (error: any) {
               if (error.response?.status === 401) {
-                toast.error('Login failed: Invalid email or password');
+                return toast.error('Login failed: Invalid email or password');
               } else {
                 toast.error('Login failed');
               }
-              console.error(error);
             }
             setSubmitting(false);
           }}
