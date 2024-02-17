@@ -27,3 +27,7 @@ a {
     background: black;
   }
 }
+
+.todo-container {
+  background-color: #f7f7f7;
+}

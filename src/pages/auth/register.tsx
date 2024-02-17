@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
@@ -101,12 +102,12 @@ const Register = () => {
               <div className='mt-2 text-center'>
                 <p className='text-gray-600'>
                   Already have an account?{' '}
-                  <a
+                  <Link
                     href='/auth/login'
                     className='font-medium text-indigo-600 hover:text-indigo-500'
                   >
                     Log in
-                  </a>
+                  </Link>
                 </p>
               </div>
             </Form>
