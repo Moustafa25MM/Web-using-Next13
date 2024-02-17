@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Todo } from '../models/todo';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,

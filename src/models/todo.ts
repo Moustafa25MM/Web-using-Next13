@@ -1,8 +1,8 @@
 export interface Todo {
   id: string;
-  userId: string;
+  userId?: string;
   name: string;
   isCompleted: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
