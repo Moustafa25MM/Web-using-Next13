@@ -3,17 +3,15 @@ import { Todo } from '@/models/todo';
 import todoService from '@/services/todoService';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import Modal from '@/pages/todos/modal';
+import DeleteTodo from './DeleteTodo';
 
 interface ListTodosProps {
   filter: string;
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  todos: Todo[];
 }
 
-const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos }) => {
-  const [todos, setLocalTodos] = useState<Todo[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
-
+const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos, todos }) => {
   useEffect(() => {
     const fetchTodos = async () => {
       let fetchedTodos: Todo[] = [];
@@ -28,22 +26,21 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos }) => {
           fetchedTodos = await todoService.list();
           break;
       }
-      setLocalTodos(fetchedTodos);
       setTodos(fetchedTodos);
     };
 
     fetchTodos();
   }, [filter, setTodos]);
 
-  const toggleTodo = async (id: string) => {
-    const updatedTodo = await todoService.toggle(id);
-    setLocalTodos(todos.map((todo) => (todo.id === id ? updatedTodo : todo)));
-  };
+  //   const toggleTodo = async (id: string) => {
+  //     const updatedTodo = await todoService.toggle(id);
+  //     setLocalTodos(todos.map((todo) => (todo.id === id ? updatedTodo : todo)));
+  //   };
 
-  const deleteTodo = async (id: string) => {
-    await todoService.delete(id);
-    setLocalTodos(todos.filter((todo) => todo.id !== id));
-  };
+  //   const deleteTodo = async (id: string) => {
+  //     await todoService.delete(id);
+  //     setLocalTodos(todos.filter((todo) => todo.id !== id));
+  //   };
 
   //   const openModal = (todo: Todo) => {
   //     setCurrentTodo(todo);
@@ -75,12 +72,12 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos }) => {
           className='flex justify-between items-center p-4 mb-2 bg-white rounded-lg shadow-md'
         >
           <div className='flex items-center'>
-            <input
+            {/* <input
               type='checkbox'
               checked={todo.isCompleted}
               onChange={() => toggleTodo(todo.id)}
               className='form-checkbox h-4 w-4'
-            />
+            /> */}
             <span className={`ml-2 ${todo.isCompleted ? 'line-through' : ''}`}>
               {todo.name}
             </span>
@@ -91,13 +88,8 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos }) => {
               className='text-sm bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded mr-2'
             >
               <AiFillEdit />
-            </button>
-            <button
-              onClick={() => deleteTodo(todo.id)}
-              className='text-sm bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded'
-            >
-              <AiFillDelete />
             </button> */}
+            <DeleteTodo id={todo.id} todos={todos} setTodos={setTodos} />
           </div>
         </div>
       ))}

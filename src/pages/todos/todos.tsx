@@ -52,7 +52,7 @@ const Todos = () => {
           Uncompleted
         </button>
       </div>
-      <ListTodos filter={filter} setTodos={setTodos} />
+      <ListTodos filter={filter} setTodos={setTodos} todos={todos} />
     </div>
   );
 };
