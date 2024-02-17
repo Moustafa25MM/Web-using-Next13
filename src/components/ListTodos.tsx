@@ -4,6 +4,7 @@ import todoService from '@/services/todoService';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import Modal from '@/pages/todos/modal';
 import DeleteTodo from './DeleteTodo';
+import ToggleTodo from './ToggleTodo';
 
 interface ListTodosProps {
   filter: string;
@@ -31,16 +32,6 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos, todos }) => {
 
     fetchTodos();
   }, [filter, setTodos]);
-
-  //   const toggleTodo = async (id: string) => {
-  //     const updatedTodo = await todoService.toggle(id);
-  //     setLocalTodos(todos.map((todo) => (todo.id === id ? updatedTodo : todo)));
-  //   };
-
-  //   const deleteTodo = async (id: string) => {
-  //     await todoService.delete(id);
-  //     setLocalTodos(todos.filter((todo) => todo.id !== id));
-  //   };
 
   //   const openModal = (todo: Todo) => {
   //     setCurrentTodo(todo);
@@ -72,12 +63,7 @@ const ListTodos: React.FC<ListTodosProps> = ({ filter, setTodos, todos }) => {
           className='flex justify-between items-center p-4 mb-2 bg-white rounded-lg shadow-md'
         >
           <div className='flex items-center'>
-            {/* <input
-              type='checkbox'
-              checked={todo.isCompleted}
-              onChange={() => toggleTodo(todo.id)}
-              className='form-checkbox h-4 w-4'
-            /> */}
+            <ToggleTodo todo={todo} todos={todos} setTodos={setTodos} />
             <span className={`ml-2 ${todo.isCompleted ? 'line-through' : ''}`}>
               {todo.name}
             </span>
